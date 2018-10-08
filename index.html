@@ -16,7 +16,9 @@
     });
       
     FB.AppEvents.logPageView();   
-      
+      FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
   };
 
   (function(d, s, id){
@@ -28,9 +30,7 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>	
 
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
+
 			
 function statusChangeCallback(response) {
 	console.log(response);
