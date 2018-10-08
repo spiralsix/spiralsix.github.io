@@ -14,15 +14,15 @@
       version    : 'v3.1'
     });
       
-    FB.AppEvents.logPageView();   
-      FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
+    	FB.AppEvents.logPageView();   
+      	FB.getLoginStatus(function(response) {
+    		statusChangeCallback(response);
 	      
 	      			
-function statusChangeCallback(response) {
-	console.log(response);
-}
-});
+		function statusChangeCallback(response) {
+			console.log(response);
+		}	
+	});
   };
 
   (function(d, s, id){
@@ -32,6 +32,11 @@ function statusChangeCallback(response) {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+   		function statusChangeCallback(response) {
+			console.log("2",response);
+		}	
+	
 </script>	
 
 
