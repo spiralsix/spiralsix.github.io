@@ -14,30 +14,73 @@
 			<button type="submit">Submit</button>
 		</form>
 
+		<div id="response">
+			reponse should show here.
+		</div>
+
+		
+		
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 	 
 		<script>
 		var options = { 
+        		target:        '#response',   // target element(s) to be updated with server response 
+			beforeSubmit:  showRequest,  // pre-submit callback 
+		        success:       showResponse,  // post-submit callback 
+
 			datatype: 'json', 
 			type: 'POST',
-			success:    function(responseText,statusText,xhr,form) { 
-				console.log(responseText,statusText,xhr,form); 
-			},
+
 			error:    function(f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) { 
-				console.log(1,2,3,4,5,6,7,8,9,10); 
+				console.log("error",1,2,3,4,5,6,7,8,9,10); 
 			}  
 		}; 
 
 		  // wait for the DOM to be loaded
 		  $(function() {
 			// bind 'myForm' and provide a simple callback function
-			$('#myForm').ajaxForm(function() {
-				console.log(this);
-			});
+			$('#myForm').ajaxForm(options);
 
 			return false;
 		  });
+			
+		function(responseText,statusText,xhr,form) { 
+			console.log("success",responseText,statusText,xhr,form); 
+		}
+			
+function showRequest(formData, jqForm, options) { 
+    // formData is an array; here we use $.param to convert it to a string to display it 
+    // but the form plugin does this for you automatically when it submits the data 
+    var queryString = $.param(formData); 
+ 
+    // jqForm is a jQuery object encapsulating the form element.  To access the 
+    // DOM element for the form do this: 
+    // var formElement = jqForm[0]; 
+ 
+    alert('About to submit: \n\n' + queryString); 
+ 
+    // here we could return false to prevent the form from being submitted; 
+    // returning anything other than false will allow the form submit to continue 
+    return true; 
+} 
+ 
+// post-submit callback 
+function showResponse(responseText, statusText, xhr, $form)  { 
+    // for normal html responses, the first argument to the success callback 
+    // is the XMLHttpRequest object's responseText property 
+ 
+    // if the ajaxForm method was passed an Options Object with the dataType 
+    // property set to 'xml' then the first argument to the success callback 
+    // is the XMLHttpRequest object's responseXML property 
+ 
+    // if the ajaxForm method was passed an Options Object with the dataType 
+    // property set to 'json' then the first argument to the success callback 
+    // is the json data object returned by the server 
+ 
+    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
+        '\n\nThe output div should have already been updated with the responseText.'); 
+}			
 		</script>		
 	</body>
 </html>
