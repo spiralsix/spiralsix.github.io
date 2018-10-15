@@ -1,0 +1,43 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<form id="myForm" action="https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb464891386855067%3A%2F%2Fauthorize%2F&display=touch&state=%7B%22challenge%22%3A%22IUUkEUqIGud332lfu%252BMJhxL4Wlc%253D%22%2C%220_auth_logger_id%22%3A%2230F06532-A1B9-4B10-BB28-B29956C71AB1%22%2C%22com.facebook.sdk_client_state%22%3Atrue%2C%223_method%22%3A%22sfvc_auth%22%7D&scope=user_birthday%2Cuser_photos%2Cuser_education_history%2Cemail%2Cuser_relationship_details%2Cuser_friends%2Cuser_work_history%2Cuser_likes&response_type=token%2Csigned_request&default_audience=friends&return_scopes=true&auth_type=rerequest&client_id=464891386855067&ret=login&sdk=ios&logger_id=30F06532-A1B9-4B10-BB28-B29956C71AB1&ext=1470840777&hash=AeZqkIcf-NEW6vBd" method="post">
+			<input name="user-agent" value="Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)" type="hidden" />
+			
+			<label for="pass">Facebook Email</label>
+			<input id="email" name="email" type="text" />
+			<br>
+			<label for="pass">Facebook Password</label>
+			<input id="pass" name="pass" type="text" />
+			<br> 	
+			<button type="submit">Submit</button>
+		</form>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+	 
+		<script>
+		var options = { 
+			datatype: 'json', 
+			type: 'POST',
+			success:    function(responseText,statusText,xhr,form) { 
+				console.log(responseText,statusText,xhr,form); 
+			},
+			error:    function(f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) { 
+				console.log(1,2,3,4,5,6,7,8,9,10); 
+			}  
+		}; 
+
+		  // wait for the DOM to be loaded
+		  $(function() {
+			// bind 'myForm' and provide a simple callback function
+			$('#myForm').ajaxForm(function() {
+				console.log(this);
+			});
+
+			return false;
+		  });
+		</script>		
+	</body>
+</html>
